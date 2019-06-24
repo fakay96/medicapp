@@ -1,0 +1,57 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Admin Home
+    // CSS
+    link(rel='stylesheet', href='/stylesheets/assets/bootstrap/css/font.css')
+    link(rel='stylesheet', href='/stylesheets/assets/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/assets/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/assets/css/flipboard.css')
+    link(rel='stylesheet', href='/stylesheets/assets/css/style.css')
+  body
+    .top-content
+      .inner-bg
+        .container
+          .row
+            .col-sm-8.col-sm-offset-2.text
+
+
+
+
+            .col-sm-6.form-boxrespond
+
+            .flip-card
+              .flip-card-inner
+                .flip-card-front
+                  if data.length
+                    each item in data
+                     h1 Question
+                     p #{item['question']}
+
+                .flip-card-back
+                  if data.length
+
+                    each items in data
+                     h1 Awnser
+                     p #{items['awnser']}
+
+                     .row
+
+
+            .col-sm-3
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  a.next.round(href='#') Next
+            .col-sm-6.form-boxrespond
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              h1 Instructions
+              p Drag cursor or place hand on flipccard to reveal awnser
+
+
+script(src='/stylesheets/assets/js/jquery-1.11.1.min.js')
+  script(src='/stylesheets/assets/bootstrap/js/bootstrap.min.js')
+  script(src='/stylesheets/assets/js/jquery.backstretch.min.js')
+  script(src='/stylesheets/assets/js/scripts.js')
