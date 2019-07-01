@@ -41,7 +41,8 @@ var take_exam = require('./controllers/take_exam_controller');
 var admin = require('./controllers/admin');
 var login = require('./controllers/login_controller');
 var flipcard = require('./controllers/flip_card');
-var picturetest= require('./controllers/picture')
+var picturetest= require('./controllers/picturecontroller');
+var takepic=require('./controllers/takepicture')
 //const cards = require('../quiz-med/api/card');
 
 
@@ -54,7 +55,8 @@ app.use('/take_exam', take_exam);
 app.use('/admin', admin);
 app.use('/login', login);
 app.use('/flipcard',flipcard);
-app.use('/picturetest', picturetest)
+app.use('/picturetest', picturetest);
+app.use('/takepic',takepic)
 
 //catch 404 and forward to error handler
 app.use(function(req, res, next) {

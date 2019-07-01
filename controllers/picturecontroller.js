@@ -1,6 +1,6 @@
 var express = require('express')
   , router = express.Router()
-  , Exam = require('../models/exam')
+  , Exam = require('../models/picture')
   , Course = require('../models/student')
   , Faculty = require('../models/faculty')
 
@@ -17,8 +17,7 @@ router.get('/new', isLoggedInAsFaculty, function(req, res) {
 });
 
 
-router.post('/create', isLoggedInAsFaculty, function(req, res)
-{
+router.post('/create', isLoggedInAsFaculty, function(req, res) {
 	var exam = {
 	  exam_name: req.body.exam_name,
 	  exam_code: req.body.exam_code,
@@ -30,7 +29,7 @@ router.post('/create', isLoggedInAsFaculty, function(req, res)
 	var exam_code =  req.body.exam_code;
 	var course_code =  req.body.course_code;
 	var faculty_username =  req.user.username;
-	Exam.getByExamCode(exam_code, function(err,doc) 
+	Exam.getByExamCode(exam_code, function(err,doc)
 	{
 		if(err)
 			res.send("Some error occured");
@@ -38,7 +37,7 @@ router.post('/create', isLoggedInAsFaculty, function(req, res)
 			{res.redirect('/make_exam/new');}
 		else
 		{
-			Faculty.getBycourseid(faculty_username, course_code, function(err, doc) 
+			Faculty.getBycourseid(faculty_username, course_code, function(err, doc)
 					{
 						if(err)
 							res.send("Some error occured");
@@ -51,11 +50,11 @@ router.post('/create', isLoggedInAsFaculty, function(req, res)
 								else if(doc)
 									{res.render('exams/question_list', {exam:exam})};
 
-							})	
-						}	
-						else	
-						{res.redirect('/make_exam/new');}					
-					})					
+							})
+						}
+						else
+						{res.redirect('/make_exam/new');}
+					})
 		}
 
 	})
@@ -82,7 +81,7 @@ router.get('/add_question', isLoggedInAsFaculty, function(req,res) {
 
 	  key: "Key"
 	};
-	res.render('exams/new_question', { title: 'Add New Question', question_full: default_question_full, 
+	res.render('exams/new_question', { title: 'Add New Question', question_full: default_question_full,
 	exam_code: exam_code});
 });
 
@@ -97,7 +96,7 @@ router.post('/add_question', isLoggedInAsFaculty, function(req,res) {
 	  optionD: "option D",
 	  key: "Key"
 	};
-	res.render('exams/new_question', { title: 'Add New Question', question_full: default_question_full, 
+	res.render('exams/new_question', { title: 'Add New Question', question_full: default_question_full,
 	exam_code: exam_code});
 });
 
@@ -105,20 +104,20 @@ router.post('/add_question', isLoggedInAsFaculty, function(req,res) {
 
 
 router.post('/create_question', isLoggedInAsFaculty, function(req, res) {
-   
+
     var question_full = {
 	  question: req.body.question,
-	  picutre:body.picture,
-		optionA: req.body.optionA,
+	  picutre:req.body.picture,
+      optionA: req.body.optionA,
 	  optionB: req.body.optionB,
 	  optionC: req.body.optionC,
 	  optionD: req.body.optionD,
 
 	  key: req.body.key
 	};
-    
+
     var exam_code = req.body.exam_code;
-    
+
     Exam.addQuestion(exam_code, question_full, function(err,docs){
         if(err)
         res.send("some error occured");
@@ -135,7 +134,7 @@ router.post('/create_question', isLoggedInAsFaculty, function(req, res) {
 
 
 router.get('/submit', isLoggedInAsFaculty, function(req, res) {
-   res.send("exam successfully created"); 
+   res.send("exam successfully created");
 });
 
 router.get('/list', isLoggedInAsFaculty, function(req, res) {
@@ -153,7 +152,7 @@ module.exports = router;
 
 function isLoggedInAsFaculty(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated()&&req.user.usertype=='faculty')
         {return next();}
 
